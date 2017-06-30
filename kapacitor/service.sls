@@ -1,7 +1,9 @@
+{% from "kapacitor/map.jinja" import kapacitor with context %}
+
 kapacitor-service:
-  service.running:
+  service.{{ "running" if kapacitor.enabled else "dead" }}:
     - name: kapacitor
-    - enable: True
+    - enable: {{ kapacitor.enabled }}
     - watch:
       - sls: kapacitor.install
       - sls: kapacitor.config
