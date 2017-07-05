@@ -1,5 +1,25 @@
 {% from "kapacitor/map.jinja" import kapacitor with context %}
 
+{%- for conf in kapacitor.config %}
+{%- if conf.table_name in ['replay', 'task'] %}
+kapacitor-config-{{ conf.table_name }}:
+  file.directory:
+    - name: {{ conf.dir }}
+    - user: kapacitor
+    - group: kapacitor
+    - makedirs: true
+{%- endif %}
+{%- if conf.table_name == 'storage' %}
+kapacitory-config-{{ conf.table_name }}:
+  file.managed:
+    - name: {{ conf.boltdb }}
+    - mode: 644
+    - user: kapacitor
+    - group: kapacitor
+    - makedirs: true
+{%- endif %}
+{%- endfor %}
+
 kapacitor-config:
   file.managed:
     - name: /etc/kapacitor/kapacitor.conf
