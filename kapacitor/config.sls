@@ -17,6 +17,7 @@ kapacitory-config-{{ conf.table_name }}:
     - user: kapacitor
     - group: kapacitor
     - makedirs: true
+    - replace: false
 {%- endif %}
 {%- endfor %}
 
