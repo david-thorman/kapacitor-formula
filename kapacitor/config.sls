@@ -8,6 +8,9 @@ kapacitor-config-{{ conf.table_name }}:
     - user: kapacitor
     - group: kapacitor
     - makedirs: true
+    - recurse:
+      - owner
+      - group
 {%- endif %}
 {%- if conf.table_name == 'storage' %}
 kapacitory-config-{{ conf.table_name }}:
