@@ -9,7 +9,7 @@ kapacitor-config-{{ conf.table_name }}:
     - group: kapacitor
     - makedirs: true
     - recurse:
-      - owner
+      - user
       - group
 {%- endif %}
 {%- if conf.table_name == 'storage' %}
