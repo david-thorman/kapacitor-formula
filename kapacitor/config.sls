@@ -32,7 +32,7 @@ kapacitor-config:
     - group: kapacitor
     - mode: 644
     - context:
-        kapacitor: {{ kapacitor }}
+        kapacitor: {{ kapacitor|json }}
     - template: jinja
     - require:
       - sls: kapacitor.install
